@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://sc8658-sketch.github.io/kamal.vidyapeeth/sitemap.xml
