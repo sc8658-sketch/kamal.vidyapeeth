@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Activity Calendar | Kamal Vidyapeeth</title>
+<meta name="description" content="Kamal Vidyapeeth activity calendar for demo classes, tests, counselling, doubt-clearing sessions and academic activities.">
+<link rel="canonical" href="https://sc8658-sketch.github.io/kamal.vidyapeeth/calendar.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+</head><body>
+<header class="site-header"><nav class="nav container">
+<a class="brand" href="index.html"><span class="brand-mark">KV</span><span><strong>KAMAL VIDYAPEETH</strong><small>Raipur, Dehradun</small></span></a>
+<button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+<div class="nav-links"><a href="index.html">Home</a><a href="classes-8-10.html">Classes 8–10</a><a href="classes-11-12.html">Classes 11–12</a><a href="physics-maths.html">Subjects</a><a href="computer-classes.html">Computer</a><a href="results.html">2026 Results</a><a class="active" href="calendar.html">Activity Calendar</a><a href="study-materials.html">Study PDFs</a><a href="contact.html">Contact</a></div>
+</nav></header>
+<main><section class="page-hero"><div class="container"><p class="eyebrow">ACADEMIC ACTIVITY SCHEDULE</p><h1>Activity Calendar</h1><p>Track demo classes, tests, counselling, doubt-clearing and other academic activities.</p></div></section>
+<section class="section"><div class="container"><div class="calendar-toolbar"><button class="calendar-btn" id="prevMonth">← Previous</button><h2 id="calendarTitle"></h2><button class="calendar-btn" id="nextMonth">Next →</button></div>
+<div class="calendar-wrap"><div class="calendar-weekdays"><div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div></div><div class="calendar-grid" id="calendarGrid"></div></div>
+<div class="calendar-legend"><span><i class="legend-demo"></i> Demo / Admission</span><span><i class="legend-test"></i> Test / Assessment</span><span><i class="legend-event"></i> Academic Activity</span></div></div></section>
+<section class="section section-alt"><div class="container"><div class="section-heading"><p class="kicker">UPCOMING ACTIVITIES</p><h2>Important Schedule</h2></div><div class="schedule-list" id="scheduleList"></div></div></section></main>
+<footer><div class="container footer-grid"><div><strong>KAMAL VIDYAPEETH</strong><p>Strong Concepts. Bright Future.</p></div><div><p>Raipur, Dehradun</p><p>Call: 6395516630</p></div><div><p>© <span id="year"></span> Kamal Vidyapeeth</p></div></div></footer>
+<script src="script.js"></script><script>
+const activities=[
+{date:'2026-09-05',title:"Teachers’ Day Celebration",type:'event',detail:"Special Teachers’ Day wishes and academic appreciation."},
+{date:'2026-09-15',title:'2 Days Free Demo Classes',type:'demo',detail:'Free demo classes begin. Contact 6395516630 for timing.'},
+{date:'2026-09-16',title:'Free Demo Classes – Day 2',type:'demo',detail:'Second day of the free demo programme.'},
+{date:'2026-09-19',title:'Weekly Test',type:'test',detail:'Regular test and performance review.'},
+{date:'2026-09-26',title:'Doubt-Clearing Session',type:'event',detail:'Dedicated doubt-clearing and concept revision session.'},
+{date:'2026-10-03',title:'Monthly Assessment',type:'test',detail:'Monthly assessment with performance analysis.'}];
+let viewDate=new Date(2026,8,1);
+function key(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function renderCalendar(){let g=document.getElementById('calendarGrid'),y=viewDate.getFullYear(),m=viewDate.getMonth();document.getElementById('calendarTitle').textContent=viewDate.toLocaleString('en-IN',{month:'long',year:'numeric'});g.innerHTML='';let first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate();for(let i=0;i<first;i++)g.insertAdjacentHTML('beforeend','<div class="calendar-day empty"></div>');for(let d=1;d<=days;d++){let k=key(new Date(y,m,d)),es=activities.filter(a=>a.date===k);g.insertAdjacentHTML('beforeend','<div class="calendar-day"><strong>'+d+'</strong>'+es.map(a=>'<div class="cal-event '+a.type+'">'+a.title+'</div>').join('')+'</div>')}}
+function renderSchedule(){let today=new Date('2026-09-05T00:00:00'),l=document.getElementById('scheduleList');l.innerHTML=activities.filter(a=>new Date(a.date+'T00:00:00')>=today).map(a=>{let d=new Date(a.date+'T00:00:00');return '<article class="schedule-item"><div class="schedule-date"><strong>'+d.getDate()+'</strong><span>'+d.toLocaleString('en-IN',{month:'short'})+'</span></div><div><span class="schedule-tag '+a.type+'">'+a.type+'</span><h3>'+a.title+'</h3><p>'+a.detail+'</p></div></article>'}).join('')}
+document.getElementById('prevMonth').onclick=()=>{viewDate.setMonth(viewDate.getMonth()-1);renderCalendar()};document.getElementById('nextMonth').onclick=()=>{viewDate.setMonth(viewDate.getMonth()+1);renderCalendar()};renderCalendar();renderSchedule();
+</script></body></html>
