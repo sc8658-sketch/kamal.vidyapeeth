@@ -46,7 +46,6 @@ https://sc8658-sketch.github.io/kamal.vidyapeeth/
 - Removed the secondary phone number
 - Enquiry form now collects the visitor's contact number and sends it with the WhatsApp enquiry
 
-- Removed Classes 8–10, Classes 11–12 and Computer navigation tabs
-- Changed homepage hero to a light, clean background
-- Removed Teachers' Day flash/banner and the 15 September 2026 demo flash
-- Removed the faculty poster imprint from the homepage
+
+## 2026 Results
+A dedicated `results.html` page and homepage result section publish the 2026 ISC/ICSE result highlights shown in the supplied poster.
