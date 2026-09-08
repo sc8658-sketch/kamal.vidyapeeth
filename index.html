@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C1YVGJ8ZJG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-C1YVGJ8ZJG');
-</script>
-
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kamal Vidyapeeth | Coaching Classes in Raipur, Dehradun</title>
   <meta name="description" content="Kamal Vidyapeeth offers concept-based coaching in Physics, Chemistry, Mathematics, Science, G.S., Quantitative Aptitude, IIT-JEE and NEET.">
@@ -83,6 +74,58 @@ body{
 }
 </style>
 
+<style>
+.visitor-counter{
+  margin-top:10px;
+  text-align:center;
+  font-size:14px;
+  font-weight:700;
+  color:#ffffff;
+}
+.visitor-counter .visitor-box{
+  display:inline-block;
+  padding:7px 14px;
+  border-radius:20px;
+  background:rgba(255,255,255,.12);
+}
+</style>
+
+<style>
+#latest-news{
+  width:100%;
+  background:linear-gradient(90deg,#b71c1c,#e53935,#ff6f00);
+  color:#fff;
+  overflow:hidden;
+  white-space:nowrap;
+  box-shadow:0 3px 10px rgba(0,0,0,.22);
+  position:relative;
+  z-index:9998;
+}
+#latest-news .news-label{
+  display:inline-block;
+  background:#fff;
+  color:#b71c1c;
+  font-weight:800;
+  padding:8px 16px;
+  margin-right:18px;
+  border-radius:0 20px 20px 0;
+  animation:newsFlash 1.2s infinite;
+}
+#latest-news .news-track{
+  display:inline-block;
+  padding-left:100%;
+  animation:newsMove 28s linear infinite;
+}
+#latest-news a{color:#fff;text-decoration:none;font-weight:700;margin-right:55px;}
+#latest-news a:hover{text-decoration:underline;}
+@keyframes newsMove{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+@keyframes newsFlash{0%,100%{opacity:1}50%{opacity:.55}}
+@media(max-width:600px){
+ #latest-news{font-size:13px}
+ #latest-news .news-label{padding:7px 10px;margin-right:10px}
+}
+</style>
+
 </head>
 <body>
 
@@ -90,6 +133,14 @@ body{
   <div class="thought-track">
     <span class="label">✨ THOUGHT OF THE DAY</span>
     “Speak the truth, then you don’t have to tell a lie.”
+  </div>
+</div>
+
+<div id="latest-news" aria-label="Latest News">
+  <div class="news-track">
+    <span class="news-label">📢 LATEST NEWS</span>
+    <a href="https://gate2027.iitm.ac.in/guideline/" target="_blank" rel="noopener">🎓 GATE EXAMINATION 2027 – Guidelines & Information | CLICK HERE</a>
+    <a href="https://cdnbbsr.s3waas.gov.in/s34ffd0e19d2069412274bd3025b0e176c/uploads/2026/08/202608311041608906.pdf" target="_blank" rel="noopener">📄 पदनाम-कनिष्ठ सहायक/कंप्यूटर सहायक/निबंधक लिपिक व अन्य पदों की सीधी भर्ती विज्ञापन | डाउनलोड करें</a>
   </div>
 </div>
 
@@ -166,6 +217,12 @@ body{
 </div></section>
 <section class="section contact-section"><div class="container center"><p class="kicker light">READY TO START?</p><h2>Talk to Kamal Vidyapeeth</h2><p>Call or WhatsApp for batch details, demo classes and admission information.</p><div class="hero-actions center-actions"><a class="btn btn-light" href="tel:+916395516630">📞 6395516630</a><a class="btn btn-whatsapp" href="https://wa.me/916395516630?text=Hello%20Kamal%20Vidyapeeth" target="_blank" rel="noopener">💬 WhatsApp</a></div></div></section>
 </main>
-<footer><div class="container footer-grid"><div><strong>KAMAL VIDYAPEETH</strong><p>Strong Concepts. Bright Future.</p></div><div><p>Raipur, Dehradun</p><p>Online & Offline Classes Available</p></div><div><p>© <span id="year"></span> Kamal Vidyapeeth</p></div></div></footer>
+<footer><div class="container footer-grid"><div><strong>KAMAL VIDYAPEETH</strong><p>Strong Concepts. Bright Future.</p></div><div><p>Raipur, Dehradun</p><p>Online & Offline Classes Available</p></div><div><p>© <span id="year"></span> Kamal Vidyapeeth</p></div></div><div class="visitor-counter"><span class="visitor-box">👁️ Website Visitors: <span id="visitor-count">--</span></span></div></footer>
 <div class="floating-actions"><a href="tel:+916395516630">📞</a><a href="https://wa.me/916395516630" target="_blank" rel="noopener">💬</a></div><script src="script.js"></script>
+<script>
+fetch("https://api.countapi.xyz/hit/kamal-vidyapeeth-in/website-visitors")
+  .then(r => r.json())
+  .then(d => document.getElementById("visitor-count").textContent = d.value)
+  .catch(() => document.getElementById("visitor-count").textContent = "Welcome!");
+</script>
 </body></html>
