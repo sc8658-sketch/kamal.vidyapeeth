@@ -74,6 +74,21 @@ body{
 }
 </style>
 
+<style>
+.visitor-counter{
+  margin-top:10px;
+  text-align:center;
+  font-size:14px;
+  font-weight:700;
+  color:#ffffff;
+}
+.visitor-counter .visitor-box{
+  display:inline-block;
+  padding:7px 14px;
+  border-radius:20px;
+  background:rgba(255,255,255,.12);
+}
+</style>
 </head>
 <body>
 
@@ -157,6 +172,12 @@ body{
 </div></section>
 <section class="section contact-section"><div class="container center"><p class="kicker light">READY TO START?</p><h2>Talk to Kamal Vidyapeeth</h2><p>Call or WhatsApp for batch details, demo classes and admission information.</p><div class="hero-actions center-actions"><a class="btn btn-light" href="tel:+916395516630">📞 6395516630</a><a class="btn btn-whatsapp" href="https://wa.me/916395516630?text=Hello%20Kamal%20Vidyapeeth" target="_blank" rel="noopener">💬 WhatsApp</a></div></div></section>
 </main>
-<footer><div class="container footer-grid"><div><strong>KAMAL VIDYAPEETH</strong><p>Strong Concepts. Bright Future.</p></div><div><p>Raipur, Dehradun</p><p>Online & Offline Classes Available</p></div><div><p>© <span id="year"></span> Kamal Vidyapeeth</p></div></div></footer>
+<footer><div class="container footer-grid"><div><strong>KAMAL VIDYAPEETH</strong><p>Strong Concepts. Bright Future.</p></div><div><p>Raipur, Dehradun</p><p>Online & Offline Classes Available</p></div><div><p>© <span id="year"></span> Kamal Vidyapeeth</p></div></div><div class="visitor-counter"><span class="visitor-box">👁️ Website Visitors: <span id="visitor-count">--</span></span></div></footer>
 <div class="floating-actions"><a href="tel:+916395516630">📞</a><a href="https://wa.me/916395516630" target="_blank" rel="noopener">💬</a></div><script src="script.js"></script>
+<script>
+fetch("https://api.countapi.xyz/hit/kamal-vidyapeeth-in/website-visitors")
+  .then(r => r.json())
+  .then(d => document.getElementById("visitor-count").textContent = d.value)
+  .catch(() => document.getElementById("visitor-count").textContent = "Welcome!");
+</script>
 </body></html>
