@@ -142,57 +142,49 @@ body{
 </style>
 
 <style>
-/* Daily 2026 Holiday / Date Widget */
-.kv-daily-holiday{
-  position:fixed;
-  left:0;
-  top:42%;
-  z-index:1000000;
-  width:190px;
-  color:#fff;
+/* Flashing daily date/holiday display between brand and Home tab */
+.kv-nav-daily-holiday{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-left:auto;
+  margin-right:10px;
+  padding:7px 11px;
+  border-radius:12px;
   background:linear-gradient(135deg,#b71c1c,#e65100);
-  padding:11px 13px;
-  border-radius:0 14px 14px 0;
-  box-shadow:0 5px 18px rgba(0,0,0,.28);
+  color:#fff;
+  box-shadow:0 3px 12px rgba(0,0,0,.22);
   font-family:Arial,sans-serif;
-  text-align:left;
-  animation:kvHolidayFlash 1.6s ease-in-out infinite;
+  white-space:nowrap;
+  animation:kvNavHolidayFlash 1.5s ease-in-out infinite;
 }
-.kv-daily-holiday .kv-today{
+.kv-nav-date{font-weight:900;font-size:13px}
+.kv-nav-day{font-weight:700;font-size:12px}
+.kv-nav-status{
+  font-weight:800;
   font-size:11px;
-  font-weight:800;
-  letter-spacing:.7px;
-  opacity:.95;
+  padding-left:7px;
+  border-left:1px solid rgba(255,255,255,.4);
 }
-.kv-daily-holiday .kv-date{
-  font-size:20px;
-  font-weight:900;
-  line-height:1.15;
-  margin:3px 0;
+@keyframes kvNavHolidayFlash{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.72;transform:scale(1.025)}
 }
-.kv-daily-holiday .kv-day{
-  font-size:12px;
-  font-weight:700;
-}
-.kv-daily-holiday .kv-status{
-  margin-top:6px;
-  padding-top:6px;
-  border-top:1px solid rgba(255,255,255,.35);
-  font-size:12px;
-  font-weight:800;
-}
-.kv-daily-holiday .kv-next{
-  margin-top:4px;
-  font-size:10px;
-  opacity:.92;
-}
-@keyframes kvHolidayFlash{
-  0%,100%{opacity:1;box-shadow:0 5px 18px rgba(0,0,0,.28)}
-  50%{opacity:.72;box-shadow:0 5px 25px rgba(229,81,0,.65)}
+@media(max-width:900px){
+  .kv-nav-daily-holiday{margin-right:5px;padding:6px 8px;gap:5px}
+  .kv-nav-date{font-size:11px}
+  .kv-nav-day,.kv-nav-status{font-size:10px}
 }
 @media(max-width:600px){
-  .kv-daily-holiday{width:165px;padding:9px 11px;top:44%}
-  .kv-daily-holiday .kv-date{font-size:17px}
+  .kv-nav-daily-holiday{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    margin:0;
+    padding:5px 7px;
+  }
+  .kv-nav-status{display:none}
 }
 </style>
 
@@ -231,7 +223,13 @@ body{
 
 <header class="site-header"><nav class="nav container">
   <a class="brand" href="index.html"><span class="brand-mark">KV</span><span><strong>KAMAL VIDYAPEETH</strong><small>Raipur, Dehradun</small></span></a>
-  <button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+  
+<div class="kv-nav-daily-holiday" id="kvDailyHoliday" aria-live="polite">
+  <span class="kv-nav-date" id="kvDailyDate">--</span>
+  <span class="kv-nav-day" id="kvDailyDay">--</span>
+  <span class="kv-nav-status" id="kvDailyStatus">Checking...</span>
+</div>
+<button class="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
   <div class="nav-links"><a class="active" href="index.html">Home</a><a href="physics-maths.html">Subjects</a><a href="results.html">Results</a><a href="study-materials.html">Downloads</a><a href="contact.html">Contact</a></div>
 </nav></header>
 <main>
@@ -309,7 +307,6 @@ body{
 </div>
 <div class="center results-more"><a class="btn btn-primary" href="results.html">View All Results →</a></div>
 </div></section>
-<<<<<<< HEAD
 
 
 <section class="section physics-notes-section">
@@ -334,9 +331,6 @@ body{
   </div>
 </section>
 
-=======
-<section class="section section-alt"><div class="container"><div class="section-heading"><p class="kicker">UPCOMING EVENTS</p><h2>Activity Calendar</h2></div><div class="event-grid"><article><strong>15 September</strong><span>Engineers' Day</span></article><article><strong>17 September</strong><span>Vishwakarma Diwas</span></article></div><div class="center top-gap"><a class="btn btn-primary" href="calendar.html">View Activity Calendar</a></div></div></section>
->>>>>>> parent of 8419ef0 (update)
 <section class="section section-alt"><div class="container center">
 <p class="kicker">STUDY MATERIAL</p><h2>Practice, Learn &amp; Improve</h2>
 <p>Physics, Chemistry, Mathematics and G.S. practice material will be available soon.</p>
@@ -353,83 +347,57 @@ fetch("https://api.countapi.xyz/hit/kamal-vidyapeeth-in/website-visitors")
   .catch(() => document.getElementById("visitor-count").textContent = "Welcome!");
 </script>
 
-<!-- Automatic Daily 2026 Holiday / Date Display -->
-<div class="kv-daily-holiday" id="kvDailyHoliday" aria-live="polite">
-  <div class="kv-today">📅 TODAY</div>
-  <div class="kv-date" id="kvDailyDate">--</div>
-  <div class="kv-day" id="kvDailyDay">--</div>
-  <div class="kv-status" id="kvDailyStatus">Checking holiday...</div>
-  <div class="kv-next" id="kvDailyNext"></div>
-</div>
+
+
 
 <script>
 (function(){
-  /* Uttarakhand 2026 official holiday dates used by this website.
-     The widget automatically uses the visitor's current date. */
-  const holidays = [
-    ["2026-01-26","Republic Day"],
-    ["2026-02-15","Maha Shivratri"],
-    ["2026-03-03","Holika Dahan"],
-    ["2026-03-04","Holi"],
-    ["2026-03-21","Id-ul-Fitr"],
-    ["2026-03-26","Ram Navami"],
-    ["2026-03-31","Mahavir Jayanti"],
-    ["2026-04-03","Good Friday"],
-    ["2026-04-14","Dr. B. R. Ambedkar Jayanti"],
-    ["2026-05-01","Buddha Purnima"],
-    ["2026-05-27","Id-ul-Zuha (Bakrid)"],
-    ["2026-06-26","Muharram"],
-    ["2026-07-16","Harela"],
-    ["2026-08-15","Independence Day"],
-    ["2026-08-26","Eid-e-Milad / Milad-un-Nabi Barawafat"],
-    ["2026-08-28","Raksha Bandhan"],
-    ["2026-09-04","Janmashtami"],
-    ["2026-10-02","Mahatma Gandhi Jayanti"],
-    ["2026-10-20","Dussehra (Vijayadashami)"],
-    ["2026-10-26","Maharshi Valmiki Jayanti"],
-    ["2026-11-08","Diwali"],
-    ["2026-11-10","Diwali (Govardhan Puja)"],
-    ["2026-11-20","Igas-Bagwal"],
-    ["2026-11-24","Guru Nanak Jayanti"],
-    ["2026-12-25","Christmas Day"]
-  ];
+  const holidays = {
+    "2026-01-26":"Republic Day",
+    "2026-02-15":"Maha Shivratri",
+    "2026-03-03":"Holika Dahan",
+    "2026-03-04":"Holi",
+    "2026-03-21":"Id-ul-Fitr",
+    "2026-03-26":"Ram Navami",
+    "2026-03-31":"Mahavir Jayanti",
+    "2026-04-03":"Good Friday",
+    "2026-04-14":"Dr. B. R. Ambedkar Jayanti",
+    "2026-05-01":"Buddha Purnima",
+    "2026-05-27":"Id-ul-Zuha (Bakrid)",
+    "2026-06-26":"Muharram",
+    "2026-07-16":"Harela",
+    "2026-08-15":"Independence Day",
+    "2026-08-26":"Eid-e-Milad / Milad-un-Nabi",
+    "2026-08-28":"Raksha Bandhan",
+    "2026-09-04":"Janmashtami",
+    "2026-10-02":"Mahatma Gandhi Jayanti",
+    "2026-10-20":"Dussehra (Vijayadashami)",
+    "2026-10-26":"Maharshi Valmiki Jayanti",
+    "2026-11-08":"Diwali",
+    "2026-11-10":"Govardhan Puja",
+    "2026-11-20":"Igas-Bagwal",
+    "2026-11-24":"Guru Nanak Jayanti",
+    "2026-12-25":"Christmas Day"
+  };
 
-  const map = Object.fromEntries(holidays);
-
-  function localKey(d){
+  function key(d){
     return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
   }
 
   function updateDaily(){
     const now = new Date();
-    const key = localKey(now);
+    const today = key(now);
 
     document.getElementById("kvDailyDate").textContent =
       now.toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"});
     document.getElementById("kvDailyDay").textContent =
-      now.toLocaleDateString("en-IN",{weekday:"long"});
+      now.toLocaleDateString("en-IN",{weekday:"short"});
 
-    if (map[key]) {
-      document.getElementById("kvDailyStatus").textContent = "🎉 Holiday: " + map[key];
-    } else {
-      document.getElementById("kvDailyStatus").textContent = "🏫 Working Day";
-    }
-
-    let next = null;
-    for(const [date,name] of holidays){
-      if(date > key){ next = [date,name]; break; }
-    }
-    if(next){
-      const nd = new Date(next[0]+"T00:00:00");
-      document.getElementById("kvDailyNext").textContent =
-        "Next holiday: "+nd.toLocaleDateString("en-IN",{day:"2-digit",month:"short"})+" • "+next[1];
-    } else {
-      document.getElementById("kvDailyNext").textContent = "2026 holiday list completed";
-    }
+    document.getElementById("kvDailyStatus").textContent =
+      holidays[today] ? "🎉 "+holidays[today] : "🏫 Working Day";
   }
 
   updateDaily();
-  /* Refresh automatically at midnight / if the page remains open. */
   setInterval(updateDaily, 60000);
 })();
 </script>
